@@ -26,3 +26,44 @@ output: Team KANAN Menang!
 // Tidak harus formal pseudocode, tapi paling tidak jelaskan step by step logikan
 ya
 */
+
+var tugOfWar = 'ABCA--V--ABCC'
+
+function menang(versus) {
+    kanan = 0
+    kiri = 0
+    temp = 0
+
+    for (let i = 0; i < versus.length; i++) {
+        switch (versus[i]) {
+            case 'A':
+                temp += 1
+                break;
+
+            case 'B':
+                temp += 2
+                break
+
+            case 'C':
+                temp += 3
+                break
+
+            case 'V':
+                kiri += temp
+                temp = 0
+                break
+        }
+    }
+    kanan += temp
+
+    console.log(`Skor team KIRI : ${kiri}`)
+    console.log(`Skor team KANAN : ${kanan}`)
+    console.log('')
+    if (kiri > kanan) {
+        return 'Tim KIRI menang!'
+    } else {
+        return 'Tim KANAN menang!'
+    }
+}
+
+console.log(menang(tugOfWar));
