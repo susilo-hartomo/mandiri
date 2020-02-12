@@ -42,9 +42,6 @@ function mengurutkanNilai(nilai) {
 console.log(mengurutkanNilai(array));
 array = mengurutkanNilai(array);
 
-
-
-
 // MENCARI NILAI MEDIAN
 function kelipatanMedian(array, key) {
     kelipatan = []
