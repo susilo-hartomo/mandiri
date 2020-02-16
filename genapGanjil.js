@@ -31,7 +31,6 @@ function kenaRazia(date, data) {
     let listLokasi = ['Gajah Mada', 'Hayam Wuruk', 'Sisingamangaraja', 'Panglima Polim', 'Fatmawati', 'Tomang Raya']
 
     //write your code here
-    var tilang = []
     function platMobil(plat) {
         var platGenap = 0
         var temp = ''
@@ -49,10 +48,18 @@ function kenaRazia(date, data) {
         }
     }
 
+    function checkHari(number) {
+        if (number % 2 == 0) {
+            return true
+        } else {
+            return false
+        }
+    }
+
     var dataTilang = []
     if (date >= 0 && date <= 31) {
         for (var i = 0; i < data.length; i++) {
-            if (data[i].type == 'Mobil' && platMobil(data[i].plat) == true) {
+            if (data[i].type == 'Mobil' && platMobil(data[i].plat) !== checkHari(date)) {
                 // console.log(data[i].type);
                 // console.log(data[i].plat);
                 var namaPelanggar = {
@@ -111,3 +118,94 @@ console.log(kenaRazia(27, [{
 // [ { name: 'Toni', tilang: 1 }, { name: 'Anna', tilang: 3 } ]
 
 
+// CARA MAS BUDI
+function kenaRazia(date, data) {
+    let listLokasi = ['Gajah Mada', 'Hayam Wuruk', 'Sisingamangaraja', 'Panglima Polim', 'Fatmawati', 'Tomang Raya']
+    ///tentukan hari ganjil/ genap
+    var hari = ''
+    if (date % 2 == 1) {
+        hari = 'ganjil'
+    }
+    else {
+        hari = 'genap'
+    }
+
+    var angka = '1234567890'
+    var hasil = []
+
+    for (var i = 0; i < data.length; i++) {
+        var platNo = ''
+        var platHari = ''
+
+        ///ambil nomornya
+        for (var j = 0; j < data[i].plat.length; j++) {
+            for (var a = 0; a < angka.length; a++) {
+                if (data[i].plat[j] === angka[a]) {
+                    platNo += angka[a]
+                }
+            }
+        }
+
+        //tentukan plat ganjil/genap
+        if (platNo % 2 == 1) {
+            platHari = 'ganjil'
+        }
+        else {
+            platHari = 'genap'
+        }
+
+        //jika hari(ganjil/genap) tidak sama dengan plat(ganjil/genap)
+        if (platHari !== hari) {
+            for (r = 0; r < data[i].rute.length; r++) {
+                for (l = 0; l < listLokasi.length; l++) {
+                    if (data[i].rute[r] === listLokasi[l]) {
+                        var cek = false;
+                        for (var h = 0; h < hasil.length; h++) {
+                            if (hasil[h].name === data[i].name) {
+                                hasil[h].tilang += 1
+                                cek = true;
+                            }
+                        }
+
+                        if (!cek) {
+                            hasil[h] = {
+                                name: data[i].name,
+                                tilang: 1
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    return hasil;
+}
+
+
+console.log(kenaRazia(27, [{
+    name: 'Denver',
+    plat: 'B 2791 KDS',
+    type: 'Mobil',
+    rute: ['TB Simatupang', 'Panglima Polim', 'Depok', 'Senen Raya']
+},
+{
+    name: 'Toni',
+    plat: 'B 1212 JBB',
+    type: 'Mobil',
+    rute: ['Pintu Besar Selatan', 'Panglima Polim', 'Depok', 'Senen Raya', 'Kemang']
+},
+{
+    name: 'Stark',
+    plat: 'B 444 XSX',
+    type: 'Motor',
+    rute: ['Pondok Indah', 'Depok', 'Senen Raya', 'Kemang']
+},
+{
+    name: 'Anna',
+    plat: 'B 678 DD',
+    type: 'Mobil',
+    rute: ['Fatmawati', 'Panglima Polim', 'Depok', 'Senen Raya', 'Kemang', 'Gajah Mada']
+},
+]))
+// [ { name: 'Toni', tilang: 1 }, { name: 'Anna', tilang: 3 } ]

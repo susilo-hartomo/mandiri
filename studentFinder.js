@@ -71,4 +71,5 @@ console.log(getStudents(grades3, studentNames3));
 var grades4 = [5, 3, 2, 10, 5];
 var studentNames4 = [];
 console.log(getStudents(grades4, studentNames4));
-  // student name should not be empty
+// student name should not be empty
+

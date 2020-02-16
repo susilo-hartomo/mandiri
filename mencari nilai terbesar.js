@@ -7,8 +7,7 @@ Diberikan sebuah function yang menerima parameter array bilangan bulat. Dimana
 function ini berfungsi untuk mengembalikan jumlah maksimum dari dua buah nilai
 yang dijumlahkan didalam array tersebut
 [EXAMPLE]
-- Bila array adalah [-2, 1, 3, -
-4, 5], maka nilai maksimum adalah 8 karena dua nilai yang
+- Bila array adalah [-2, 1, 3, -4, 5], maka nilai maksimum adalah 8 karena dua nilai yang
 dapat menghasilkan nilai maksimum adalah 3 + 5
 [RULE]
 1. dilarang menggunakan indexOf(), find(), filter(), shift(), unshift(), sort()
@@ -77,3 +76,18 @@ console.log('nilai 2 terbesar dari fungsi');
 console.log(nilai2Terbesar);
 console.log('Jumlah 2 nilai terbesar');
 console.log(nilai2Terbesar[0] + nilai2Terbesar[1]);
+
+
+//MENGURUTKAN NILAI 
+for (let i = 1; i < x.length; i++) {
+    for (let j = 0; j < i; j++) {
+        if(x[i]>x[j]){
+            var temp = x[i]
+            x[i] = x[j]
+            x[j] = temp
+        }
+    }
+}
+
+var jumlahNilaiTerbesar = x[0] + x[1]
+console.log('jumlahNilaiTerbesar: ', jumlahNilaiTerbesar);
