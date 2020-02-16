@@ -26,6 +26,7 @@ function deleteUndefinedKeys(data) {
     if (data.length == 0) {
         return 'no data'
     }
+    
     for (let i = 0; i < data.length; i++) {
         for (const k in data[i]) {
             if (data[i][k] == undefined) {
