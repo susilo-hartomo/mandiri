@@ -26,31 +26,58 @@ Terdapat 3 bangku kosong, D1, D2, D3
 - dilarang menggunakan indexof, includes
 
 */
-function findEmptySeat(params1, params2) {
-  var kamus = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+function findEmptySeat(arr, par) {
 
-  var index = 0
-  for (let k = 0; k < kamus.length; k++) {
-    if (params2 == kamus[k]) {
-      index += k
+  var tempatKosong = []
+  var check = 1
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i][0] == par) {
+      check = 0
+      for (let j = 1; j < arr[i].length; j++) {
+        if (arr[i][j] == ' ') {
+          tempatKosong.push(`${arr[i][0]}${arr[0][j]}`)
+        }
+      }
     }
   }
-  console.log(index);
 
-  for (let j = 0; j < params1[index + 1].length; j++) {
-    if (params1[index+1][j]==' ') {
-      
-      console.log(`${kamus[index]}${j}`);
-    }
+  if (check == 1) {
+    return `baris ${par} tidak tersedia`
+  } else if (tempatKosong.length == 0) {
+    return `Bangku di baris ${par} sudah penuh`
+  } else {
+    return `Terdapat ${tempatKosong.length} bangku kosong, ${tempatKosong}`
   }
 }
 
-var param1 =
-  [
-    ['ROW', '1', '2', '3', '4', '5', '6'],
-    ['A', 'X', 'X', 'X', 'X', ' ', ' '],
-    ['B', ' ', 'X', ' ', ' ', ' ', ' '],
-    ['C', 'X', 'X', 'X', 'X', ' ', ' '],
-    ['D', ' ', ' ', ' ', 'X', 'X', 'X'],
-  ]
-findEmptySeat(param1, 'D')
+
+var cinemaSeat2 = [
+  ["ROW", "10", "11", "12", "13"],
+  ["E", "X", "X", "X", "X"],
+  ["F", " ", "X", " ", " "],
+  ["G", "X", " ", "X", "X"],
+  ["H", " ", " ", " ", "X"]
+];
+
+console.log(findEmptySeat(cinemaSeat2, "G"));
+// Terdapat 1 bangku kosong, G11
+
+console.log(findEmptySeat(cinemaSeat2, "Z"));
+// // Baris Z tidak tersedia
+
+var cinemaSeat = [
+  ["ROW", "1", "2", "3", "4", "5", "6"],
+  ["A", "X", "X", "X", "X", " ", " "],
+  ["B", " ", "X", " ", " ", " ", " "],
+  ["C", "X", "X", "X", "X", "X ", "X"],
+  ["D", " ", " ", " ", "X", "X", "X"]
+];
+
+console.log(findEmptySeat(cinemaSeat, "D"));
+// Terdapat 3 bangku kosong, D1, D2, D3
+
+console.log(findEmptySeat(cinemaSeat, "A"));
+// Terdapat 2 bangku kosong, A5, A6
+
+console.log(findEmptySeat(cinemaSeat, "C"));
+// Bangku di baris C sudah penuh
