@@ -5,13 +5,10 @@ function angkaPrima(angka) {
             check = false
         }
     }
-    if (check == false) {
-        return false
-    } else {
-        return true
-    }
-
+  
+    return check
 }
+
 function angkaPrimaRange(num) {
     var temp = []
     for (let i = 2; i < num; i++) {
